@@ -1,0 +1,535 @@
+/* ==========================================================
+   Файл: css/styles.css
+   Назначение: Современные стили для сайта "История Windows"
+   Автор: Лейн (учебный проект)
+   Версия: 2.0
+   ========================================================== */
+
+/* === CSS ПЕРЕМЕННЫЕ ДЛЯ ТЕМ === */
+:root {
+  /* Цвета светлой темы */
+  --primary-color: #0078d7;
+  --secondary-color: #107c10;
+  --background-color: #f7f7f7;
+  --surface-color: #ffffff;
+  --text-color: #222222;
+  --text-secondary: #666666;
+  --border-color: #dddddd;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --gradient-primary: linear-gradient(135deg, #0078d7, #00b8b8);
+  --gradient-green: linear-gradient(135deg, #008f4c, #00d67a, #00ffb0);
+  --gradient-success: linear-gradient(135deg, #009e60, #00ff80);
+  
+  /* Анимации */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Размеры */
+  --border-radius: 12px;
+  --border-radius-small: 6px;
+  --header-height: 60px;
+  --max-width: 1200px;
+}
+
+/* === ТЕМНАЯ ТЕМА === */
+[data-theme="dark"] {
+  --background-color: #0f0f0f;
+  --surface-color: #1f1f1f;
+  --text-color: #eaeaea;
+  --text-secondary: #a0a0a0;
+  --border-color: #333333;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-heavy: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* === ГЛОБАЛЬНЫЕ НАСТРОЙКИ === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* === СЕМАНТИЧЕСКИЕ ЭЛЕМЕНТЫ === */
+main {
+  padding: 2rem 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+/* === ВЕРХНЯЯ НАВИГАЦИЯ === */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: var(--header-height);
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  gap: 0.75rem;
+}
+
+.logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* === Кнопки навигации === */
+.nav-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 0.9rem;
+  backdrop-filter: blur(5px);
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:active {
+  transform: translateY(0);
+}
+
+/* === ГЛАВНЫЙ ЗАГОЛОВОК === */
+.hero-section {
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-bottom: 2rem;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: var(--gradient-green);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === ЗАГОЛОВКИ С ГРАДИЕНТОМ === */
+.green-gradient-heading {
+  font-style: italic;
+  font-weight: 600;
+  background: var(--gradient-green);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  transition: transform var(--transition-fast);
+}
+
+.green-gradient-heading:hover {
+  transform: translateY(-2px);
+}
+
+/* === КОНТЕНТНЫЕ БЛОКИ === */
+.content-block {
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.content-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-green);
+  transform: scaleY(0);
+  transition: transform var(--transition-normal);
+}
+
+.content-block:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.content-block:hover::before {
+  transform: scaleY(1);
+}
+
+.content-block p {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.content-block ul, 
+.content-block ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.content-block li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* === СПЕЦИАЛЬНЫЙ ЗАГОЛОВОК === */
+.special-heading {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-left: 4px solid;
+  border-image: var(--gradient-green) 1;
+  padding-left: 1rem;
+}
+
+/* === ПОИСК === */
+.search-engine {
+  text-align: center;
+  padding: 2rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin: 2rem auto;
+  max-width: 600px;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-light);
+}
+
+.search-engine:focus-within {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.search-form {
+  display: flex;
+  gap: 0.75rem;
+  max-width: 500px;
+  margin: 1.5rem auto 0;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-small);
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.1);
+}
+
+.search-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-success);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.search-btn:hover,
+.search-btn:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 158, 96, 0.3);
+}
+
+/* === КВАДРАТНЫЕ БЛОКИ === */
+.quad-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem auto;
+  max-width: var(--max-width);
+}
+
+.quad-block {
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.quad-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-green);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.quad-block:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
+.quad-block:hover::before {
+  transform: scaleX(1);
+}
+
+.quad-block h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.quad-block ul, 
+.quad-block ol {
+  padding-left: 1.25rem;
+}
+
+.quad-block li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+.quad-block li::marker {
+  color: var(--secondary-color);
+}
+
+/* === КНОПКА "НАВЕРХ" === */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--gradient-success);
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-heavy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.9);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top-btn:hover,
+.scroll-top-btn:focus {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 255, 120, 0.4);
+}
+
+.scroll-top-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* === ПОДВАЛ === */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--surface-color);
+  margin-top: 4rem;
+}
+
+.site-footer p {
+  margin-bottom: 0.5rem;
+}
+
+/* === УТИЛИТЫ === */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  .top-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .nav-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .content-block {
+    padding: 1.5rem;
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .quad-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .scroll-top-btn {
+    bottom: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-block {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .quad-block {
+    padding: 1rem;
+  }
+  
+  .nav-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* === АНИМАЦИИ === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* === УЛУЧШЕНИЯ ДЛЯ FOCUS === */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* === УЛУЧШЕНИЯ ДЛЯ ПЕЧАТИ === */
+@media print {
+  .top-bar,
+  .scroll-top-btn,
+  .search-engine {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .content-block {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
